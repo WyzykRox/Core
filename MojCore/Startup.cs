@@ -39,7 +39,10 @@ namespace MojCore
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>()
+            services.AddDefaultIdentity<ApplicationUser>(config =>
+                {
+                config.SignIn.RequireConfirmedEmail = true;
+            }).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
