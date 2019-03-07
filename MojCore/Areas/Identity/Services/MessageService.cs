@@ -35,7 +35,7 @@ namespace MojCore.Areas.Identity.Services
                                  : email;
                 MailMessage mail = new MailMessage()
                 {
-                    From = new MailAddress(_emailSettings.UsernameEmail, "Wojciech Wyżywniak")
+                    From = new MailAddress(_emailSettings.UsernameEmail, "MojCore")
                 };
                 mail.To.Add(new MailAddress(toEmail));
                 //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
