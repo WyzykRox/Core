@@ -96,7 +96,7 @@ namespace MojCore
             Task<IdentityResult> roleResult;
             string email = "Admin@admin.com";
 
-            //Check that there is an Administrator role and create if not
+            //Sprawdź czy istnieje rola Admin
             Task<bool> hasAdminRole = roleManager.RoleExistsAsync("Admin");
             hasAdminRole.Wait();
 
@@ -106,7 +106,7 @@ namespace MojCore
                 roleResult.Wait();
             }
 
-            //Check that there is an Administrator role and create if not
+            //Sprawdź czy istnieje rola User
             Task<bool> hasUserRole = roleManager.RoleExistsAsync("User");
             hasUserRole.Wait();
 
@@ -116,8 +116,8 @@ namespace MojCore
                 roleResult.Wait();
             }
 
-            //Check if the admin user exists and create it if not
-            //Add to the Administrator role
+            //Sprawdź czy istnieje konto Admin, jeśli nie stwórz
+            //Dodaj role Admin
 
             Task<ApplicationUser> testUser = userManager.FindByEmailAsync(email);
             testUser.Wait();
@@ -130,6 +130,7 @@ namespace MojCore
                 administrator.Age = "24";
                 administrator.Email = email;
                 administrator.UserName = email;
+                administrator.EmailConfirmed = true;
 
                 Task<IdentityResult> newUser = userManager.CreateAsync(administrator, "Admin1!");
                 newUser.Wait();
