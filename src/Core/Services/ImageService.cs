@@ -18,7 +18,7 @@ namespace Services
         {
             // TO DO
             // wez sciezke do pliku
-            // wyciagnij po kropce 
+            // wyciagnij po kropce
             // zwroc
             throw new NotImplementedException();
         }
