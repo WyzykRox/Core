@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories.Abstract
 {
-    public partial interface IEntityBaseRepository<EntityType, EntityKey> where EntityType : class, IEntityBase<EntityKey>, new()
+    public interface IEntityBaseRepository<EntityType, EntityKeyType> where EntityType : class, IEntityBase<EntityKeyType>, new()
     {
         IEnumerable<EntityType> AllIncluding(params Expression<Func<EntityType, object>>[] includeProperties);
         IEnumerable<EntityType> GetAll();
         int Count();
-        EntityType GetSingle(EntityKey id);
+        EntityType GetSingle(EntityKeyType id);
         EntityType GetSingle(Expression<Func<EntityType, bool>> predicate);
         EntityType GetSingle(Expression<Func<EntityType, bool>> predicate, params Expression<Func<EntityType, object>>[] includeProperties);
         IEnumerable<EntityType> FindBy(Expression<Func<EntityType, bool>> predicate);
@@ -22,14 +22,12 @@ namespace Core.Repositories.Abstract
         void Delete(EntityType entity);
         void DeleteWhere(Expression<Func<EntityType, bool>> predicate);
         void Commit();
-    }
 
-    public partial interface IEntityBaseRepository<EntityType, EntityKey> where EntityType : class, IEntityBase<EntityKey>, new()
-    {
+        // Task part
         Task<IEnumerable<EntityType>> AllIncludingAsync(params Expression<Func<EntityType, object>>[] includeProperties);
         Task<IEnumerable<EntityType>> GetAllAsync();
         Task<int> CountAsync();
-        Task<EntityType> GetSingleAsync(EntityKey id);
+        Task<EntityType> GetSingleAsync(EntityKeyType id);
         Task<EntityType> GetSingleAsync(Expression<Func<EntityType, bool>> predicate);
         Task<EntityType> GetSingleAsync(Expression<Func<EntityType, bool>> predicate, params Expression<Func<EntityType, object>>[] includeProperties);
         Task<IEnumerable<EntityType>> FindByAsync(Expression<Func<EntityType, bool>> predicate);

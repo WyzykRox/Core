@@ -1,0 +1,29 @@
+﻿@model Models.Entities.ProfileImage
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data" asp-controller="Image" asp-action="Create" id="Form">
+        
+        <div class="form-field">
+            <div class="btn">
+                <i class="material-icons left">image</i>
+                <span>Image</span>
+                <input type="file" name="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+
+
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

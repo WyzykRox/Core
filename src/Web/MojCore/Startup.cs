@@ -51,9 +51,9 @@ namespace Web.MojCore
             // Add application services.    
             services.AddSingleton<IMessage, MessageService>();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
-
-            services.AddScoped<IImageRepository, ImageRepository>();
-            services.AddScoped<IImageService, ImageService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IProfileImageRepository, ProfileImageRepository>();
+            services.AddScoped<IProfileImageService, ProfileImageService>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

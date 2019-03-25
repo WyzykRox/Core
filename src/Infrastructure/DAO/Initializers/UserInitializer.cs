@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Core.Models.Entities;
 using Infrastructure.DAO.Data;
 using System;
+using Models.Entities;
 
 namespace Infrastructure.DAO.Initializers
 {

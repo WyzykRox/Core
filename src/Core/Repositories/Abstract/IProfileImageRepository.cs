@@ -3,7 +3,8 @@ using System;
 
 namespace Core.Repositories.Abstract
 {
-    public interface IImageRepository : IEntityBaseRepository<Image, Guid>
+    public interface IProfileImageRepository : IEntityBaseRepository<ProfileImage, Guid>
     {
     }
+
 }

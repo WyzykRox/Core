@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\Infrastructure\ExternalServices\ExternalServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\userimages\" />
+  </ItemGroup>
+
 </Project>

@@ -195,7 +195,7 @@ namespace DAO.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Models.Entities.Image", b =>
+            modelBuilder.Entity("Models.Entities.ProfileImage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -209,7 +209,7 @@ namespace DAO.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Images");
+                    b.ToTable("ProfileImages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -257,11 +257,11 @@ namespace DAO.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Models.Entities.Image", b =>
+            modelBuilder.Entity("Models.Entities.ProfileImage", b =>
                 {
                     b.HasOne("Core.Models.Entities.User", "User")
                         .WithOne("ProfileImage")
-                        .HasForeignKey("Models.Entities.Image", "UserId")
+                        .HasForeignKey("Models.Entities.ProfileImage", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

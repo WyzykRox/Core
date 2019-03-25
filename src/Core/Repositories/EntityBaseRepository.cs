@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories
 {
-    public abstract partial class EntityBaseRepository<EntityType, EntityKey> : IEntityBaseRepository<EntityType, EntityKey> where EntityType : class, IEntityBase<EntityKey>, new()
+    public abstract class EntityBaseRepository<EntityType, EntityKeyType> : IEntityBaseRepository<EntityType, EntityKeyType> where EntityType : class, IEntityBase<EntityKeyType>, new()
     {
         private readonly ApplicationDbContext _context;
 
@@ -39,9 +39,9 @@ namespace Core.Repositories
             return query.AsEnumerable();
         }
 
-        public EntityType GetSingle(EntityKey id)
+        public EntityType GetSingle(EntityKeyType id)
         {
-            return _context.Set<EntityType>().FirstOrDefault(x => x.Id.Equals(id));
+            return _context.Set<EntityType>().FirstOrDefault(x => x.Id.ToString() == id.ToString());
         }
 
         public EntityType GetSingle(Expression<Func<EntityType, bool>> predicate)
@@ -106,10 +106,7 @@ namespace Core.Repositories
         {
             _context.SaveChanges();
         }
-    }
 
-    public abstract partial class EntityBaseRepository<EntityType, EntityKey> : IEntityBaseRepository<EntityType, EntityKey> where EntityType : class, IEntityBase<EntityKey>, new()
-    {
         public async Task<IEnumerable<EntityType>> AllIncludingAsync(params Expression<Func<EntityType, object>>[] includeProperties)
         {
             IQueryable<EntityType> query = _context.Set<EntityType>();
@@ -130,7 +127,7 @@ namespace Core.Repositories
             return _context.Set<EntityType>().CountAsync();
         }
 
-        public async Task<EntityType> GetSingleAsync(EntityKey id)
+        public async Task<EntityType> GetSingleAsync(EntityKeyType id)
         {
             return await _context.Set<EntityType>().FirstOrDefaultAsync(x => x.Id.ToString() == id.ToString());
         }

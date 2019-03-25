@@ -13,7 +13,7 @@ namespace Infrastructure.DAO.Data
         {
 
         }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<ProfileImage> ProfileImages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace Infrastructure.DAO.Data
             modelBuilder.Entity<User>()
                  .HasOne(a => a.ProfileImage)
                  .WithOne(b => b.User)
-                 .HasForeignKey<Image>(b => b.UserId)
+                 .HasForeignKey<ProfileImage>(b => b.UserId)
                  .OnDelete(DeleteBehavior.Cascade);
 
         }

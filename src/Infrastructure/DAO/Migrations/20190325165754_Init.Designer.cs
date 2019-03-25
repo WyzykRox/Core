@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAO.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190308130324_AddImageProfile")]
-    partial class AddImageProfile
+    [Migration("20190325165754_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,7 +197,7 @@ namespace DAO.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Models.Entities.Image", b =>
+            modelBuilder.Entity("Models.Entities.ProfileImage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -211,7 +211,7 @@ namespace DAO.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Images");
+                    b.ToTable("ProfileImages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -259,11 +259,11 @@ namespace DAO.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Models.Entities.Image", b =>
+            modelBuilder.Entity("Models.Entities.ProfileImage", b =>
                 {
                     b.HasOne("Core.Models.Entities.User", "User")
                         .WithOne("ProfileImage")
-                        .HasForeignKey("Models.Entities.Image", "UserId")
+                        .HasForeignKey("Models.Entities.ProfileImage", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

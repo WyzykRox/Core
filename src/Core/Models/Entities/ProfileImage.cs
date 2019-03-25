@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Models.Entities
 {
-    public class Image : IEntityBase<Guid>
+    public class ProfileImage : IEntityBase<Guid>
     {
         public Guid Id { get; set; }
 
         public DateTime CreatedDate { get; }
 
-        public string Src { get; set; }
+        public string Src { get; set; } = "NoProfileImage.png";
 
 
         public User User { get; set; }

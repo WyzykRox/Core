@@ -14,7 +14,8 @@ namespace Core.Models.Entities
 
         public DateTime CreatedDate { get; set; }
 
-        public Image ProfileImage { get; set; }
+        public ProfileImage ProfileImage { get; set; }
         public Guid ProfileImageId { get; set; }
+
     }
 }

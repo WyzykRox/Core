@@ -1,0 +1,22 @@
+﻿@model Models.Entities.ProfileImage
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h1>Profile Photo</h1>
+    <div>
+        <img src="~/images/userimages/@Model.Src" style="max-width: 450px; max-height: 450px;"/>
+    </div>
+    <a class="btn btn-warning" asp-action="Edit"><i class="fas fa-pen"></i> Edit Profile Photo</a>
+</div>
+
+
+
+
+    
+
+
+               
+               

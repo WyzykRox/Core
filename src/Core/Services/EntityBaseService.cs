@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    public abstract class EntityBaseService<EntityType, EntityKey> : IEntityBaseService<EntityType, EntityKey> where EntityType : class, IEntityBase<EntityKey>, new()
+    public abstract class EntityBaseService<EntityType, EntityKeyType> : IEntityBaseService<EntityType, EntityKeyType> where EntityType : class, IEntityBase<EntityKeyType>, new()
     {
-        private readonly IEntityBaseRepository<EntityType, EntityKey> _repository;
+        private readonly IEntityBaseRepository<EntityType, EntityKeyType> _repository;
 
-        public EntityBaseService(IEntityBaseRepository<EntityType, EntityKey> repository)
+        public EntityBaseService(IEntityBaseRepository<EntityType, EntityKeyType> repository)
         {
             _repository = repository;
         }
 
-        public async Task<EntityType> GetAsync(EntityKey id)
+        public async Task<EntityType> GetAsync(EntityKeyType id)
         {
             return await _repository.GetSingleAsync(id);
         }
@@ -27,7 +27,7 @@ namespace Core.Services
             return await _repository.GetSingleAsync(predicate);
         }
 
-        public async Task<EntityType> GetAsync(EntityKey id, params Expression<Func<EntityType, object>>[] includeProperties)
+        public async Task<EntityType> GetAsync(EntityKeyType id, params Expression<Func<EntityType, object>>[] includeProperties)
         {
             return await _repository.GetSingleAsync(_ => _.Id.ToString() == id.ToString(), includeProperties);
         }
@@ -43,7 +43,7 @@ namespace Core.Services
             await _repository.CommitAsync();
         }
 
-        public async Task DeleteAsync(EntityKey id)
+        public async Task DeleteAsync(EntityKeyType id)
         {
             _repository.DeleteWhere(_ => _.Id.ToString() == id.ToString());
             await _repository.CommitAsync();
@@ -70,14 +70,19 @@ namespace Core.Services
             return await _repository.FindByAsync(predicate, includeProperties);
         }
 
-        public async Task<bool> IsExistsAsync(EntityKey id)
+        public async Task<bool> IsExistsAsync(EntityKeyType id)
         {
-            return await IsExistsAsync(_ => _.Id.ToString()==id.ToString());
+            return await IsExistsAsync(_ => _.Id.ToString() == id.ToString());
         }
 
         public async Task<bool> IsExistsAsync(Expression<Func<EntityType, bool>> predicate)
         {
             return await _repository.IsExistsAsync(predicate);
+        }
+
+        public async Task<bool> AnyAsync()
+        {
+            return await _repository.CountAsync() > 0;
         }
     }
 }
