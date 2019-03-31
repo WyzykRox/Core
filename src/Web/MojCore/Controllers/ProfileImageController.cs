@@ -40,13 +40,16 @@ namespace Web.MojCore.Controllers
         public async Task<IActionResult> Edit()
         {
             Guid.TryParse(_userManager.GetUserId(User), out Guid userId);
-            return View(await _imageService.GetUserProfilePhoto(userId));
+            var r = await _imageService.GetUserProfilePhoto(userId);
+            return View(r);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,UserId")] ProfileImage image, IFormFile file)
         {
+            Guid.TryParse(_userManager.GetUserId(User), out Guid userId);
+            image = await _imageService.GetUserProfilePhoto(userId);
             if (image != null )
                 await _imageService.UpdateProfileImage(image, file);
             return RedirectToAction(nameof(Index));
