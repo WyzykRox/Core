@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models.Entities.Abstract
+namespace Core.Models.Entities.Abstract
 {
     public interface IEntityBase <T>
     {

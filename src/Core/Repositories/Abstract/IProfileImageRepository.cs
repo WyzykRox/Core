@@ -1,4 +1,4 @@
-﻿using Models.Entities;
+﻿using Core.Models.Entities;
 using System;
 
 namespace Core.Repositories.Abstract

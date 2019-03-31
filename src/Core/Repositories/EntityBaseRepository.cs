@@ -1,7 +1,7 @@
 ﻿using Infrastructure.DAO.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Models.Entities.Abstract;
+using Core.Models.Entities.Abstract;
 using Core.Repositories.Abstract;
 using System;
 using System.Collections.Generic;

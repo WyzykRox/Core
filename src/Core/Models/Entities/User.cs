@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Models.Entities;
-using Models.Entities.Abstract;
+using Core.Models.Entities;
+using Core.Models.Entities.Abstract;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Models.Entities
 {
@@ -16,6 +17,7 @@ namespace Core.Models.Entities
 
         public ProfileImage ProfileImage { get; set; }
         public Guid ProfileImageId { get; set; }
+        public List<News> News { get; set; }
 
     }
 }

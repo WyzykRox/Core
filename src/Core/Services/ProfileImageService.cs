@@ -1,9 +1,9 @@
 ﻿using Core.Repositories.Abstract;
 using Core.Services;
+using Core.Services.Abstract;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Models.Entities;
-using Services.Abstract;
+using Core.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services
+namespace Core.Services
 {
     public class ProfileImageService : EntityBaseService<ProfileImage, Guid>, IProfileImageService
     {

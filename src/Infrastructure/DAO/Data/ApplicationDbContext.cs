@@ -1,7 +1,6 @@
 ﻿using Core.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Models.Entities;
 using System;
 
 namespace Infrastructure.DAO.Data
@@ -14,6 +13,7 @@ namespace Infrastructure.DAO.Data
 
         }
         public DbSet<ProfileImage> ProfileImages { get; set; }
+        public DbSet<News> News { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -21,11 +21,16 @@ namespace Infrastructure.DAO.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
-                 .HasOne(a => a.ProfileImage)
-                 .WithOne(b => b.User)
-                 .HasForeignKey<ProfileImage>(b => b.UserId)
-                 .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(a => a.ProfileImage)
+                .WithOne(b => b.User)
+                .HasForeignKey<ProfileImage>(b => b.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+               .HasMany(u => u.News)
+               .WithOne(e => e.User)
+               .HasForeignKey(h => h.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

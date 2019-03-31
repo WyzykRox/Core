@@ -1,11 +1,11 @@
 ﻿using Core.Services.Abstract;
-using Models.Entities;
+using Core.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Abstract
+namespace Core.Services.Abstract
 {
     public interface IProfileImageService : IEntityBaseService<ProfileImage, Guid>
     {

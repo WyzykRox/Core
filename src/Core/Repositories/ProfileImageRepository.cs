@@ -1,6 +1,6 @@
 ﻿using Core.Repositories.Abstract;
 using Infrastructure.DAO.Data;
-using Models.Entities;
+using Core.Models.Entities;
 using System;
 
 namespace Core.Repositories

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Models.Entities.Abstract;
+using Core.Models.Entities.Abstract;
 using System;
 
 namespace Core.Models.Entities

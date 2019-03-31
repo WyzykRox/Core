@@ -9,13 +9,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Core.Models.Entities;
 using Infrastructure.DAO.Data;
 using Infrastructure.ExternalServices;
-using Infrastructure.DAO;
 using System;
 using Infrastructure.DAO.Initializers;
 using Core.Repositories.Abstract;
 using Core.Repositories;
-using Services.Abstract;
-using Services;
+
+using Core.Services.Abstract;
+using Core.Services;
 
 namespace Web.MojCore
 {
@@ -54,7 +54,8 @@ namespace Web.MojCore
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IProfileImageRepository, ProfileImageRepository>();
             services.AddScoped<IProfileImageService, ProfileImageService>();
-
+            services.AddScoped<INewsRepository, NewsRepository>();
+            services.AddScoped<INewsService, NewsService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     
